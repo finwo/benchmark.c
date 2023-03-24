@@ -21,4 +21,4 @@ $(BIN): $(OBJ) $(BIN:=.o)
 clean:
 	rm -f $(OBJ)
 	rm -f $(BIN:=.o)
-	rm -f test
+	rm -f $(BIN)
