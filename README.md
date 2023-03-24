@@ -28,19 +28,27 @@ Example
 ```c
 #include "finwo/benchmark.h"
 
-static void some_function() {
-  sleep(1);
+void some_function() {
+  usleep(100 + (rand() % 100));
 }
 
 int main() {
   BMARK(some_function);
 
   char percentiles[] = {
-    1, 5, 50, 95, 99, 0
+    10, 50, 90, 0
   };
 
-  return bmark_run(100, percentiles);
+  return bmark_run(10, percentiles);
 }
+```
+
+Which in turn will output something similar to this:
+
+```
+| Description   |      10 % |      50 % |      90 % |
+|:------------- | ---------:| ---------:| ---------:|
+| some_function | 163.00 us | 202.00 us | 245.00 us |
 ```
 
 API
