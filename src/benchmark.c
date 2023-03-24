@@ -61,22 +61,17 @@ int bmark_run(int run_count, char percentiles[]) {
 
   printf("\n");
 
-  // Separator
-  printf("+-");
-  for(i = 0 ; i < header_desclen ; i++) printf("-");
-  for(i = 0 ; percentiles[i] ; i++) printf("-+----------");
-  printf("-+\n");
-
   // Column names
   printf("| %-*s |", header_desclen, header_description);
   for(i = 0 ; percentiles[i] ; i++) printf(" %*d %% |", 7, percentiles[i]);
   printf("\n");
 
   // Separator
-  printf("+-");
+  printf("|:");
   for(i = 0 ; i < header_desclen ; i++) printf("-");
-  for(i = 0 ; percentiles[i] ; i++) printf("-+----------");
-  printf("-+\n");
+  printf(" |");
+  for(i = 0 ; percentiles[i] ; i++) printf(" ---------:|");
+  printf("\n");
 
   // Go over the whole queue
   q_entry = bmark_queue;
@@ -120,12 +115,6 @@ int bmark_run(int run_count, char percentiles[]) {
 
     q_entry = q_entry->next;
   }
-
-  // Separator
-  printf("+-");
-  for(i = 0 ; i < header_desclen ; i++) printf("-");
-  for(i = 0 ; percentiles[i] ; i++) printf("-+----------");
-  printf("-+\n");
 
   printf("\n");
   return 0;
