@@ -49,7 +49,7 @@ void bmark_enqueue(char *name, void (*fn)()) {
 //                       123.45 us
 int bmark_run(int run_count, char percentiles[]) {
   int header_desclen = strlen(header_description);
-  int i, r, unit;
+  int i, l, r, unit;
   struct timeval tv_start;
   struct timeval tv_end;
 
@@ -60,7 +60,8 @@ int bmark_run(int run_count, char percentiles[]) {
   // Get max description length
   struct bmark_queue_t *q_entry = bmark_queue;
   while(q_entry) {
-    header_desclen = MAX(header_desclen, strlen(q_entry->name));
+    l = strlen(q_entry->name);
+    if (l > header_desclen) header_desclen = l;
     q_entry = q_entry->next;
   }
 
